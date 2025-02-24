@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "utils.h"
+#include "../include/utils.h"
 
 // Função para iniciar a contagem de tempo
 void iniciar_tempo(clock_t *inicio) {

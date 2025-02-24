@@ -11,6 +11,7 @@
 
 
 
+
 #define MAX_SITUACAO 20
 
 int main(int argc, char *argv[]) {
@@ -52,7 +53,8 @@ int main(int argc, char *argv[]) {
     }
 
     Registro *registros = NULL;
-    ler_provao("./data/PROVAO.TXT", &registros, quantidade, situacao_int);
+    //ler_provao("./data/PROVAO.TXT", &registros, quantidade, situacao_int);
+    ler_binario("./data/registros.bin", &registros, quantidade);
 
     Metricas stats = {0, 0, 0, 0.0, 0, 0, 0, 0.0};
 

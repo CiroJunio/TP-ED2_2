@@ -29,6 +29,32 @@ void trim_string(char *str) {
     str[i] = '\0';
 }
 
+// Função para ler registros de um arquivo binário
+void ler_binario(const char *nome_binario, Registro **registros, int quantidade) {
+    FILE *arquivo = abrir_arquivo(nome_binario, "rb");
+    if (!arquivo) {
+        perror("Erro ao abrir o arquivo binário");
+        exit(EXIT_FAILURE);
+    }
+
+    // Aloca memória para o vetor de registros
+    *registros = (Registro*)malloc(quantidade * sizeof(Registro));
+    if (!(*registros)) {
+        perror("Erro ao alocar memória");
+        fechar_arquivo(arquivo);
+        exit(EXIT_FAILURE);
+    }
+    memset(*registros, 0, quantidade * sizeof(Registro));
+
+    // Lê os registros do arquivo binário
+    int i = 0;
+    while (i < quantidade && fread(&((*registros)[i]), sizeof(Registro), 1, arquivo) == 1) {
+        i++;
+    }
+
+    fechar_arquivo(arquivo);
+}
+
 // Função para ler o arquivo PROVAO.TXT e armazenar os dados em um vetor de Registro
 void ler_provao(const char *nome_arquivo, Registro **registros, int quantidade, int situacao) {
     FILE *arquivo = abrir_arquivo(nome_arquivo, "r");
