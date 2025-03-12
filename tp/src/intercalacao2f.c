@@ -251,7 +251,7 @@ void intercalar_corridas(NotaPosicao *resultado, NotaPosicao *fita1, int *idx1, 
 }
 
 // Função principal de intercalação balanceada com seleção por substituição
-void intercalacao_balanceada_2f(const char *nome_arquivo, int quantidade, int situacao, Metricas *stats, int ordem) {
+void intercalacao_balanceada_2f(const char *nome_arquivo, int quantidade, int situacao, Metricas *stats, int ordem, int imprime) {
     Registro *registros = NULL;
     clock_t inicio, fim;
     iniciar_tempo(&inicio);
@@ -495,10 +495,12 @@ void intercalacao_balanceada_2f(const char *nome_arquivo, int quantidade, int si
     log_metricas(nome_algoritmo, quantidade, situacao == 1 ? "1" : situacao == 2 ? "2" : "3", *stats);
 
     // Print sorted records
-    printf("\nRegistros ordenados por nota (ordem %s):\n", ordem_str);
-    for (int i = 0; i < quantidade; i++) {
-        print_registro(&registros[posicoes_ordenadas[i]]);
-    } 
+    if (imprime == 1) {
+      printf("\nRegistros ordenados por nota (ordem %s):\n", ordem_str);
+      for (int i = 0; i < quantidade; i++) {
+          print_registro(&registros[posicoes_ordenadas[i]]);
+      } 
+    }
 
     // Cleanup
     free(posicoes_ordenadas);
@@ -509,11 +511,11 @@ void intercalacao_balanceada_2f(const char *nome_arquivo, int quantidade, int si
 }
 
 // Wrapper para a versão ascendente (compatibilidade com código existente)
-void intercalacao_balanceada_2f_ascendente(const char *nome_arquivo, int quantidade, int situacao, Metricas *stats) {
-    intercalacao_balanceada_2f(nome_arquivo, quantidade, situacao, stats, ORDEM_ASCENDENTE);
+void intercalacao_balanceada_2f_ascendente(const char *nome_arquivo, int quantidade, int situacao, Metricas *stats, int imprime) {
+    intercalacao_balanceada_2f(nome_arquivo, quantidade, situacao, stats, ORDEM_ASCENDENTE, imprime);
 }
 
 // Wrapper para a versão descendente
-void intercalacao_balanceada_2f_descendente(const char *nome_arquivo, int quantidade, int situacao, Metricas *stats) {
-    intercalacao_balanceada_2f(nome_arquivo, quantidade, situacao, stats, ORDEM_DESCENDENTE);
+void intercalacao_balanceada_2f_descendente(const char *nome_arquivo, int quantidade, int situacao, Metricas *stats, int imprime) {
+    intercalacao_balanceada_2f(nome_arquivo, quantidade, situacao, stats, ORDEM_DESCENDENTE, imprime);
 }

@@ -22,6 +22,7 @@ int main(int argc, char *argv[]) {
     int situacao_int;
     char situacao[MAX_SITUACAO];
     int imprimir = 0;
+    int imprimir_aqui = 0;
 
     // Leitura dos parâmetros
     metodo = atoi(argv[1]);  // Modificado para ser um número inteiro de 1 a 3
@@ -61,10 +62,13 @@ int main(int argc, char *argv[]) {
             intercalacao_balanceada_1f(argv[2], quantidade, situacao_int);
             break;
         case 2:
-            if (situacao_int == 1)
-                intercalacao_balanceada_2f_ascendente(argv[2], quantidade, situacao_int, &stats);
+            if (situacao_int == 1) {
+                intercalacao_balanceada_2f_ascendente(argv[2], quantidade, situacao_int, &stats, imprimir);
+                imprimir_aqui = 1;
+            }
             else {
-                intercalacao_balanceada_2f_descendente(argv[2], quantidade, situacao_int, &stats);
+                intercalacao_balanceada_2f_descendente(argv[2], quantidade, situacao_int, &stats, imprimir);
+                imprimir_aqui = 1;
             }
             break;
         case 3:
@@ -74,7 +78,7 @@ int main(int argc, char *argv[]) {
             printf("Metodo de ordenacao desconhecido.\n");
             return 1;
     }
-    if (imprimir == 1) {
+    if (imprimir == 1 && imprimir_aqui == 0) {
         for (int i = 0; i < quantidade; i++) {
             print_registro(&registros[i]);
         }

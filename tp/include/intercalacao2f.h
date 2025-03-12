@@ -9,6 +9,6 @@ typedef struct {
     long posicao;  // Posição original no vetor de registros
 } NotaPosicao;
 
-void intercalacao_balanceada_2f_ascendente(const char *nome_arquivo, int quantidade, int situacao, Metricas *stats);
-void intercalacao_balanceada_2f_descendente(const char *nome_arquivo, int quantidade, int situacao, Metricas *stats);
+void intercalacao_balanceada_2f_ascendente(const char *nome_arquivo, int quantidade, int situacao, Metricas *stats, int imprime);
+void intercalacao_balanceada_2f_descendente(const char *nome_arquivo, int quantidade, int situacao, Metricas *stats, int imprime);
 #endif // INTERCALACAO2F_H
