@@ -9,9 +9,6 @@
 #include "../include/registro.h"
 #include "../include/leitura.h"
 
-
-
-
 #define MAX_SITUACAO 20
 
 int main(int argc, char *argv[]) {
@@ -64,7 +61,11 @@ int main(int argc, char *argv[]) {
             intercalacao_balanceada_1f(argv[2], quantidade, situacao_int);
             break;
         case 2:
-            intercalacao_balanceada_2f(argv[2], quantidade, situacao_int, &stats);
+            if (situacao_int == 1)
+                intercalacao_balanceada_2f_ascendente(argv[2], quantidade, situacao_int, &stats);
+            else {
+                intercalacao_balanceada_2f_descendente(argv[2], quantidade, situacao_int, &stats);
+            }
             break;
         case 3:
             quicksort_externo(argv[2], quantidade, situacao_int, &stats);
