@@ -18,7 +18,7 @@ float selecionar_pivo(char *arquivo, int situacao, Metricas* stats);
 void mesclar_arquivos(char *arquivo_saida, char *arquivo1, char *arquivo2, int situacao, Metricas* stats);
 void quicksort_externo_recursivo(char *arquivo, int situacao, Metricas* stats);
 void quicksort_externo(char *arquivo, int quantidade, int situacao, int imprime);
-
+void limpar_arquivos_temporarios();
 
 
 #endif // QUICK_SORT_EXT_H

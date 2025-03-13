@@ -3,8 +3,13 @@
 #include <string.h>
 #include "../include/quicksort_ext.h"
 
-#define MEMORIA_INTERNA 15  // Quantidade máxima de registros em memória interna
+#define MEMORIA_INTERNA 50  // Quantidade máxima de registros em memória interna
 
+
+void limpar_arquivos_temporarios() {
+    system("rm -f part_*");  // Para Linux/Unix
+    // system("del /Q part_*"); //Para Windows
+}
 // Função que divide o arquivo em dois arquivos menores baseado em um pivô
 void particionar_arquivo(char *arquivo_entrada, char *arquivo_menores, char *arquivo_maiores, float pivo, Metricas* stats) {
     FILE *entrada = fopen(arquivo_entrada, "rb");
@@ -258,9 +263,9 @@ void quicksort_externo_recursivo(char *arquivo, int situacao, Metricas* stats) {
     float pivo = selecionar_pivo(arquivo, situacao, stats);
     
     // Cria nomes para arquivos temporários
-    char arquivo_menores[100], arquivo_maiores[100];
-    sprintf(arquivo_menores, "%s_menores", arquivo);
-    sprintf(arquivo_maiores, "%s_maiores", arquivo);
+    char arquivo_menores[512], arquivo_maiores[512];
+    sprintf(arquivo_menores, "part_menores_%s", strrchr(arquivo, '/') ? strrchr(arquivo, '/') + 1 : arquivo);
+    sprintf(arquivo_maiores, "part_maiores_%s", strrchr(arquivo, '/') ? strrchr(arquivo, '/') + 1 : arquivo);
     
     // Particiona o arquivo com base no pivô
     particionar_arquivo(arquivo, arquivo_menores, arquivo_maiores, pivo, stats);
@@ -279,6 +284,8 @@ void quicksort_externo_recursivo(char *arquivo, int situacao, Metricas* stats) {
 
 // Função principal para executar o QuickSort Externo
 void quicksort_externo(char *arquivo, int quantidade, int situacao, int imprime) {
+    limpar_arquivos_temporarios();
+
     Metricas stats = {0, 0, 0, 0.0, 0, 0, 0, 0.0};
     clock_t inicio, fim;
     
@@ -317,7 +324,6 @@ void quicksort_externo(char *arquivo, int quantidade, int situacao, int imprime)
     finalizar_tempo(&inicio, &fim, &stats.tempo_execucao_pos);
     
     // Exibe os registros ordenados
-
     if (imprime == 1) {
         FILE *resultado = fopen(arquivo_temp, "rb");
         if (resultado) {
@@ -332,4 +338,6 @@ void quicksort_externo(char *arquivo, int quantidade, int situacao, int imprime)
     
     // Remove o arquivo temporário
     remove(arquivo_temp);
+    limpar_arquivos_temporarios();
+
 }
