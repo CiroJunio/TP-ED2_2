@@ -135,7 +135,7 @@ int selecao_por_substituicao(Registro *registros, int quantidade, NotaPosicao *f
     
     // Enquanto houver elementos no heap
     while (heap_size > 0) {
-        // O elemento mais adequado está na raiz do heap
+        // Extrai o menor elementodo heap
         NotaPosicao saida;
         saida.nota = heap[0].nota;       // Extrai a nota
         saida.posicao = heap[0].posicao; // Extrai a posição original
