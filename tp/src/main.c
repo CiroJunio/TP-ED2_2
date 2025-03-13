@@ -72,7 +72,8 @@ int main(int argc, char *argv[]) {
             }
             break;
         case 3:
-            quicksort_externo(argv[2], quantidade, situacao_int, &stats);
+            quicksort_externo("./data/registros.bin", quantidade, situacao_int, imprimir);
+            imprimir_aqui = 1;
             break;
         default:
             printf("Metodo de ordenacao desconhecido.\n");
