@@ -59,9 +59,6 @@ int main(int argc, char *argv[]) {
     // Usando switch para selecionar o método de ordenação
     switch (metodo) {
         case 1:
-            intercalacao_balanceada_1f(argv[2], quantidade, situacao_int);
-            break;
-        case 2:
             if (situacao_int == 1) {
                 intercalacao_balanceada_2f_ascendente(argv[2], quantidade, situacao_int, &stats, imprimir);
                 imprimir_aqui = 1;
@@ -70,6 +67,9 @@ int main(int argc, char *argv[]) {
                 intercalacao_balanceada_2f_descendente(argv[2], quantidade, situacao_int, &stats, imprimir);
                 imprimir_aqui = 1;
             }
+
+        case 2:
+            intercalacao_balanceada_1f(argv[2], quantidade, situacao_int);
             break;
         case 3:
             quicksort_externo("./data/registros.bin", quantidade, situacao_int, imprimir);
