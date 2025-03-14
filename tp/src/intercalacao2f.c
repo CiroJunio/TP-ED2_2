@@ -132,7 +132,7 @@ int selecao_por_substituicao(Registro *registros, int quantidade, NotaPosicao *f
     
     // Construir o heap inicial
     construir_heap(heap, heap_size, ordem);
-    
+     
     // Enquanto houver elementos no heap
     while (heap_size > 0) {
         // Extrai o menor elementodo heap
@@ -276,7 +276,8 @@ void intercalar_corridas(NotaPosicao *resultado, NotaPosicao *fita1, int *idx1, 
 
 // Função principal de intercalação balanceada com seleção por substituição
 // Implementa o algoritmo completo de ordenação externa
-void intercalacao_balanceada_2f(const char *nome_arquivo, int quantidade, int situacao, Metricas *stats, int ordem, int imprime) {
+void intercalacao_balanceada_2f(const char *nome_arquivo, int quantidade, int situacao, 
+                                Metricas *stats, int ordem, int imprime) {
     Registro *registros = NULL;
     clock_t inicio, fim;
     iniciar_tempo(&inicio); // Inicia a contagem de tempo
@@ -537,7 +538,7 @@ void intercalacao_balanceada_2f(const char *nome_arquivo, int quantidade, int si
           print_registro(&registros[posicoes_ordenadas[i]]);
       } 
     }
-    
+
     // Libera a memória alocada
     free(posicoes_ordenadas);
     free(fita1);

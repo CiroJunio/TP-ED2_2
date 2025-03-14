@@ -232,7 +232,7 @@ void quicksort_externo_recursivo(char *arquivo, int situacao, Metricas* stats) {
                 } else if (situacao == 2) { // Descendente
                     trocar = (registros[j].nota < registros[j+1].nota);
                 } else { // Aleatório (simplificado como ascendente)
-                    trocar = (registros[j].nota > registros[j+1].nota);
+                    trocar = (rand() % 2 == 0);
                 }
                 
                 if (trocar) {
